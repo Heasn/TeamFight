@@ -22,43 +22,55 @@ namespace TeamFunction
         {
             Id = Guid.NewGuid();
             Captain = captain;
-            TeamList.Teams.Add(Id);
+            TeamList.Instance.AddTeam(this);
         }
+
         //邀请
-        public void InviteMember(Character other)
+        public bool InviteMember(Character captain, Character other)
         {
-            InviteList.Invites.Add(Tuple.Create(Id, other));
+            if (ReferenceEquals(Captain, captain))
+            {
+                InviteList.Instance.AddInvitation(this, other);
+                return true;
+            }
+
+            return false;
         }
 
         //加入队伍
-        public bool AddMember(Character other)
+        public bool AddMember(Character captain, Character other)
         {
-            if (Member == null)
+            if (ReferenceEquals(Captain,captain) &&  Member == null)
             {
                 Member = other;
                 return true;
             }
+
             return false;
         }
 
         //踢出队伍
-        public bool RemoveMember(Character member)
+        public bool RemoveMember(Character captain, Character member)
         {
-            if (ReferenceEquals(Member, member))
+            if (ReferenceEquals(Captain,captain)&& ReferenceEquals(Member, member))
             {
                 Member = null;
                 return true;
             }
+
             return false;
         }
 
         //解散队伍
-        public bool Dismiss()
+        public bool Dismiss(Character captain)
         {
+            if (!ReferenceEquals(Captain, captain))
+                return false;
+
             Captain.QuitTeam();
             Member.QuitTeam();
-            Guid removeId;
-            return TeamList.Teams.TryTake(out removeId);
+
+            return TeamList.Instance.RemoveTeam(this);
         }
 
     }

@@ -165,6 +165,10 @@
     </Compile>
     <Compile Include="Models\CharacterModel.cs" />
     <Compile Include="Models\BackpackModel.cs" />
+    <Compile Include="Models\DissmissTeamModel.cs" />
+    <Compile Include="Models\InviteCharacterModel.cs" />
+    <Compile Include="Models\JoinTeamModel.cs" />
+    <Compile Include="Models\RecommendTeamModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

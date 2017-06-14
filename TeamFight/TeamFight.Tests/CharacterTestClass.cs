@@ -11,11 +11,19 @@ namespace TeamFight.Tests
     public class CharacterTestClass
     {
         [TestMethod]
-        public void LoadFriendsTest()
+        public void LoadCharacterTest()
         {
-            TeamFunction.Character chr = new TeamFunction.Character(1);
+            TeamFunction.Character chr = TeamFunction.DbContext.LoadCharacter(1);
+
+            Console.WriteLine("玩家名字：" + chr.Name);
+            Console.WriteLine("玩家等级：" + chr.Level);
+            Console.WriteLine("玩家疲劳度：" + chr.Fatigue);
+            
+
             Assert.AreNotEqual(chr.Friends, null);
             Assert.AreNotEqual(chr.Friends.Count, 0);
         }
+
+
     }
 }

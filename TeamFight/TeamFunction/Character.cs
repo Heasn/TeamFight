@@ -15,9 +15,14 @@ namespace TeamFunction
 
         public List<int> Friends { get; private set; }
 
-        public Character(int id)
+        public uint Level { get; private  set; }
+
+        public Character(int id,uint level,uint fatigue,string name)
         {
             Id = id;
+            Level = level;
+            Fatigue = fatigue;
+            Name = name;
             LoadFriends();
         }
 
@@ -40,7 +45,7 @@ namespace TeamFunction
 
         private void LoadFriends()
         {
-            Friends = Tools.DbContext.QueryFriendId(Id);
+            Friends = DbContext.QueryFriendId(Id);
         }
     }
 }

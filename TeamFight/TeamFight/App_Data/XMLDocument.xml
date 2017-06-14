@@ -493,19 +493,53 @@
             <param name="charId">玩家Id</param>
             <returns>创建的组队的Id</returns>
         </member>
-        <member name="M:TeamFight.Controllers.TeamController.FetchFirends(System.Int32)">
+        <member name="M:TeamFight.Controllers.TeamController.PullFirendList(System.Int32)">
             <summary>
             获取玩家好友列表
             </summary>
             <param name="charId">玩家Id</param>
             <returns>玩家好友Id</returns>
         </member>
-        <member name="M:TeamFight.Controllers.TeamController.Quit(System.Int32)">
+        <member name="M:TeamFight.Controllers.TeamController.PullRecommendTeams">
+            <summary>
+            获取推荐组队列表
+            </summary>
+            <returns>成功返回组队列表，失败返回null</returns>
+        </member>
+        <member name="M:TeamFight.Controllers.TeamController.InviteCharacter(TeamFight.Models.InviteCharacterModel)">
+            <summary>
+            邀请玩家
+            </summary>
+            <param name="model">接收到的邀请玩家的数据模型，包含发起人Id（CharacterId）与被邀请人Id（InvitedCharacterId）</param>
+            <returns>邀请成功返回true，邀请失败返回false</returns>
+        </member>
+        <member name="M:TeamFight.Controllers.TeamController.QueryInvitation(System.Int32)">
+            <summary>
+            查询是否有组队邀请
+            </summary>
+            <param name="charId">玩家Id</param>
+            <returns>组队Id</returns>
+        </member>
+        <member name="M:TeamFight.Controllers.TeamController.JoinTeam(TeamFight.Models.JoinTeamModel)">
+            <summary>
+            加入队伍
+            </summary>
+            <param name="model">加入组队的数据模型</param>
+            <returns>是否加入成功</returns>
+        </member>
+        <member name="M:TeamFight.Controllers.TeamController.QuitTeam(System.Int32)">
             <summary>
             玩家退出组队
             </summary>
             <param name="charId">玩家Id</param>
             <returns>退出是否成功，true表示成功，false表示失败或队伍不存在</returns>
+        </member>
+        <member name="M:TeamFight.Controllers.TeamController.DismissTeam(TeamFight.Models.DissmissTeamModel)">
+            <summary>
+            队长解散队伍
+            </summary>
+            <param name="model">解散队伍的数据模型</param>
+            <returns>是否解散成功</returns>
         </member>
     </members>
 </doc>
