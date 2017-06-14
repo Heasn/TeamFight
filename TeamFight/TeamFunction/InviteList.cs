@@ -92,7 +92,7 @@ namespace TeamFunction
                 _readwritelock.ReleaseReaderLock();
             }
 
-            return tuple?.Item1;
+            return tuple == null ? null : tuple.Item1;
         }
 
         /// <summary>

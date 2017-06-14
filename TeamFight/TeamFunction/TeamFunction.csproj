@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TeamFunction</RootNamespace>
     <AssemblyName>TeamFunction</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Character.cs" />
     <Compile Include="DbContext.cs" />
+    <Compile Include="FightInviteList.cs" />
     <Compile Include="GameTeam.cs" />
     <Compile Include="InviteList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

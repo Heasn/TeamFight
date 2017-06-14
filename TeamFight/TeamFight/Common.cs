@@ -8,7 +8,13 @@ namespace TeamFight
 {
     public sealed class Common
     {
-        public static ConcurrentDictionary<int, TeamFunction.Character> OnlinePlayers { get; } =
+        private static readonly ConcurrentDictionary<int, TeamFunction.Character> _online =
             new ConcurrentDictionary<int, TeamFunction.Character>();
+
+        public static ConcurrentDictionary<int, TeamFunction.Character> OnlinePlayers
+        {
+            get { return _online; }
+        }
+            
     }
 }

@@ -157,9 +157,70 @@ namespace TeamFight.Controllers
             return false;
         }
 
-        
-        
-        
-         
+        /// <summary>
+        /// 由队长发起，发起战斗请求
+        /// </summary>
+        /// <param name="charId">人物Id</param>
+        /// <returns>发出战斗请求是否成功</returns>
+        public bool SendFightInvitation([FromBody] int charId)
+        {
+            TeamFunction.Character character;
+
+            if (Common.OnlinePlayers.TryGetValue(charId, out character))
+            {
+                return TeamFunction.FightInviteList.Instance.AddFightInvitation(character.GameTeam);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 由队员发起，查询是否有战斗请求
+        /// </summary>
+        /// <param name="charId">人物Id</param>
+        /// <returns>查询战斗请求是否成功</returns>
+        public bool QueryFightInvitation([FromBody] int charId)
+        {
+            TeamFunction.Character character;
+
+            if (Common.OnlinePlayers.TryGetValue(charId, out character))
+            {
+                return TeamFunction.FightInviteList.Instance.ExistFightInvitation(character);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 由队员发起，队员确认是否接收战斗请求
+        /// </summary>
+        /// <param name="model">确认战斗请求结果数据模型</param>
+        /// <returns>确认结果是否成功</returns>
+        public bool ConfirmFightInvitation([FromBody] Models.ConfirmFightInvitation model )
+        {
+            var team= TeamFunction.TeamList.Instance.FindTeam(model.TeamId);
+            if (team != null)
+            {
+                return TeamFunction.FightInviteList.Instance.ConfrimFightInvitation(team, model.ConfirmResult);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 由队长发起，获取队员确认结果
+        /// </summary>
+        /// <param name="teamId">队伍Id</param>
+        /// <returns>确认结果</returns>
+        public int PullFightInvitationResult([FromBody] Guid teamId )
+        {
+            var team = TeamFunction.TeamList.Instance.FindTeam(teamId);
+            if (team != null)
+            {
+                return (int)TeamFunction.FightInviteList.Instance.GetFightInvitationConfirmResult(team);
+            }
+
+            return (int) TeamFunction.FightInviteList.FightConfirmResult.WaitToConfirm;
+        }
     }
 }

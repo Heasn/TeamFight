@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace TeamFight.Tests
 {
     [TestClass]
-    public class CharacterTestClass
+    public class CharacterTest
     {
         [TestMethod]
         public void LoadCharacterTest()
