@@ -1,29 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace TeamFunction
 {
     public sealed class FightInviteList
     {
-        private static readonly FightInviteList SingletonInstance = new FightInviteList();
-
-        private static readonly Dictionary<GameTeam, FightConfirmResult> Invites =
-            new Dictionary<GameTeam, FightConfirmResult>();
-
-        private readonly ReaderWriterLock _readwritelock = new ReaderWriterLock();
-
-        public static FightInviteList Instance
-        {
-            get
-            {
-                return SingletonInstance;
-            }
-        }
-
         public enum FightConfirmResult
         {
             WaitToConfirm,
@@ -31,13 +13,24 @@ namespace TeamFunction
             Refuse
         }
 
-        FightInviteList()
-        {
+        private static readonly FightInviteList SingletonInstance = new FightInviteList();
 
+        private static readonly Dictionary<GameTeam, FightConfirmResult> Invites =
+            new Dictionary<GameTeam, FightConfirmResult>();
+
+        private readonly ReaderWriterLock _readwritelock = new ReaderWriterLock();
+
+        private FightInviteList()
+        {
+        }
+
+        public static FightInviteList Instance
+        {
+            get { return SingletonInstance; }
         }
 
         /// <summary>
-        /// 发出战斗请求
+        ///     发出战斗请求
         /// </summary>
         /// <param name="team">所在队伍</param>
         /// <returns>发出请求是否成功</returns>
@@ -52,7 +45,6 @@ namespace TeamFunction
 
             try
             {
-
                 if (Invites.ContainsKey(team))
                 {
                     result = false;
@@ -81,13 +73,12 @@ namespace TeamFunction
         }
 
         /// <summary>
-        /// 根据被邀请角色查找队伍
+        ///     根据被邀请角色查找队伍
         /// </summary>
         /// <param name="invitedCharacter">被邀请角色</param>
         /// <returns>是否存在</returns>
         public bool ExistFightInvitation(Character invitedCharacter)
         {
-
             _readwritelock.AcquireReaderLock(500);
 
             if (!_readwritelock.IsReaderLockHeld)
@@ -110,7 +101,7 @@ namespace TeamFunction
         }
 
         /// <summary>
-        /// 确认邀请结果
+        ///     确认邀请结果
         /// </summary>
         /// <param name="team">队伍</param>
         /// <param name="confirmResult">确认结果</param>
@@ -119,7 +110,7 @@ namespace TeamFunction
         {
             var exist = ExistFightInvitation(team.Member);
 
-            bool result = false;
+            var result = false;
 
             if (exist)
             {
@@ -143,7 +134,7 @@ namespace TeamFunction
         }
 
         /// <summary>
-        /// 获取确认结果
+        ///     获取确认结果
         /// </summary>
         /// <param name="team">队伍</param>
         /// <returns>接收（true）拒绝（false）</returns>
@@ -174,7 +165,7 @@ namespace TeamFunction
         }
 
         /// <summary>
-        /// 移除邀请
+        ///     移除邀请
         /// </summary>
         /// <param name="team">队伍</param>
         /// <returns>是否移除成功</returns>
@@ -208,6 +199,5 @@ namespace TeamFunction
 
             return result;
         }
-
     }
 }

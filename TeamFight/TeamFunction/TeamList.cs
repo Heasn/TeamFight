@@ -1,28 +1,24 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Threading;
 using System.Linq;
+using System.Threading;
 
 namespace TeamFunction
 {
     public class TeamList
     {
         private static readonly TeamList SingletonInstance = new TeamList();
-
         private static readonly List<GameTeam> Teams = new List<GameTeam>();
-
         private readonly ReaderWriterLock _readwritelock = new ReaderWriterLock();
-
-        public static TeamList Instance { get; } = SingletonInstance;
 
         private TeamList()
         {
-
         }
 
+        public static TeamList Instance { get; } = SingletonInstance;
+
         /// <summary>
-        /// 添加队伍
+        ///     添加队伍
         /// </summary>
         /// <param name="team">队伍</param>
         /// <returns>添加是否成功</returns>
@@ -37,7 +33,6 @@ namespace TeamFunction
 
             try
             {
-
                 if (Teams.Exists(x => ReferenceEquals(x, team)))
                 {
                     result = false;
@@ -66,13 +61,12 @@ namespace TeamFunction
         }
 
         /// <summary>
-        /// 根据队伍Id查找组队
+        ///     根据队伍Id查找组队
         /// </summary>
         /// <param name="teamId">队伍Id</param>
         /// <returns>查找到时返回该队伍，未查找到时返回null</returns>
         public GameTeam FindTeam(Guid teamId)
         {
-
             _readwritelock.AcquireReaderLock(500);
 
             if (!_readwritelock.IsReaderLockHeld)
@@ -93,7 +87,7 @@ namespace TeamFunction
         }
 
         /// <summary>
-        /// 移除队伍
+        ///     移除队伍
         /// </summary>
         /// <param name="team">队伍</param>
         /// <returns>是否移除成功</returns>
@@ -129,7 +123,7 @@ namespace TeamFunction
         }
 
         /// <summary>
-        /// 获取随机推荐的队伍
+        ///     获取随机推荐的队伍
         /// </summary>
         /// <param name="length">推荐数量</param>
         /// <returns>成功返回队伍列表，失败返回null</returns>

@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Concurrent;
+using TeamFunction;
 
 namespace TeamFight
 {
     public sealed class Common
     {
-        private static readonly ConcurrentDictionary<int, TeamFunction.Character> _online =
-            new ConcurrentDictionary<int, TeamFunction.Character>();
+        private static readonly ConcurrentDictionary<int, Character> _online =
+            new ConcurrentDictionary<int, Character>();
 
-        public static ConcurrentDictionary<int, TeamFunction.Character> OnlinePlayers
+        public static ConcurrentDictionary<int, Character> OnlinePlayers
         {
             get { return _online; }
         }
-            
     }
 }

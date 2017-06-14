@@ -2,16 +2,11 @@
 // package to your project.
 ////#define Handle_PageResultOfT
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Net.Http.Headers;
-using System.Reflection;
 using System.Web;
 using System.Web.Http;
+
 #if Handle_PageResultOfT
 using System.Web.Http.OData;
 #endif
@@ -19,9 +14,10 @@ using System.Web.Http.OData;
 namespace TeamFight.Areas.HelpPage
 {
     /// <summary>
-    /// Use this class to customize the Help Page.
-    /// For example you can set a custom <see cref="System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
-    /// or you can provide the samples for the requests/responses.
+    ///     Use this class to customize the Help Page.
+    ///     For example you can set a custom <see cref="System.Web.Http.Description.IDocumentationProvider" /> to supply the
+    ///     documentation
+    ///     or you can provide the samples for the requests/responses.
     /// </summary>
     public static class HelpPageConfig
     {
@@ -79,8 +75,8 @@ namespace TeamFight.Areas.HelpPage
             //// The sample will be generated as if the controller named "Values" and action named "Post" were returning a string.
             //config.SetActualResponseType(typeof(string), "Values", "Post");
 
-            config.SetDocumentationProvider(new XmlDocumentationProvider(HttpContext.Current.Server.MapPath("~/App_Data/XmlDocument.xml")));
-
+            config.SetDocumentationProvider(
+                new XmlDocumentationProvider(HttpContext.Current.Server.MapPath("~/App_Data/XmlDocument.xml")));
         }
 
 #if Handle_PageResultOfT

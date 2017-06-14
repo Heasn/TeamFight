@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TeamFunction;
 
 namespace TeamFight.Tests
 {
@@ -13,7 +9,7 @@ namespace TeamFight.Tests
         [TestMethod]
         public void CreateTest()
         {
-            TeamFunction.Character chr = TeamFunction.DbContext.LoadCharacter(1);
+            var chr = DbContext.LoadCharacter(1);
 
             Assert.AreNotEqual(chr.CreateTeam(), false);
             Assert.AreNotEqual(chr.GameTeam, null);
@@ -22,8 +18,8 @@ namespace TeamFight.Tests
         [TestMethod]
         public void JoinTest()
         {
-            TeamFunction.Character captain = TeamFunction.DbContext.LoadCharacter(1);
-            TeamFunction.Character member = TeamFunction.DbContext.LoadCharacter(2);
+            var captain = DbContext.LoadCharacter(1);
+            var member = DbContext.LoadCharacter(2);
 
             Assert.AreNotEqual(captain.CreateTeam(), false);
             Assert.AreNotEqual(captain.GameTeam, null);

@@ -1,23 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace TeamFunction
 {
     public sealed class Character
     {
-        public int Id { get; private set; }
-
-        public string Name { get; private set; }
-
-        public uint Fatigue { get; private set; }
-
-        public GameTeam GameTeam { get; private set; }
-
-        public List<int> Friends { get; private set; }
-
-        public uint Level { get; private  set; }
-
-        public Character(int id,uint level,uint fatigue,string name)
+        public Character(int id, uint level, uint fatigue, string name)
         {
             Id = id;
             Level = level;
@@ -25,6 +12,13 @@ namespace TeamFunction
             Name = name;
             LoadFriends();
         }
+
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+        public uint Fatigue { get; private set; }
+        public GameTeam GameTeam { get; private set; }
+        public List<int> Friends { get; private set; }
+        public uint Level { get; private set; }
 
         public bool CreateTeam()
         {
@@ -41,7 +35,6 @@ namespace TeamFunction
             GameTeam = null;
             return true;
         }
-
 
         private void LoadFriends()
         {

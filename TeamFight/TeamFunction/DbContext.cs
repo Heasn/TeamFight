@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using MySql.Data.MySqlClient;
-using Tools;
+using MySqlHelper = Tools.MySqlHelper;
 
 namespace TeamFunction
 {
@@ -9,12 +9,13 @@ namespace TeamFunction
     {
         public static Character LoadCharacter(int charId)
         {
-            var reader = Tools.MySqlHelper.ExecuteReader(Tools.MySqlHelper.Conn, CommandType.Text,
+            var reader = MySqlHelper.ExecuteReader(MySqlHelper.Conn, CommandType.Text,
                 "SELECT * FROM Characters WHERE Id=@charId", new MySqlParameter("@charId", charId));
 
             if (reader.Read())
             {
-                return new Character(reader.GetInt32("Id"),reader.GetUInt32("Level"),reader.GetUInt32("Fatigue"),reader.GetString("Name"));           
+                return new Character(reader.GetInt32("Id"), reader.GetUInt32("Level"), reader.GetUInt32("Fatigue"),
+                    reader.GetString("Name"));
             }
 
             return null;
@@ -22,7 +23,7 @@ namespace TeamFunction
 
         public static List<int> QueryFriendId(int charId)
         {
-            var reader = Tools.MySqlHelper.ExecuteReader(Tools.MySqlHelper.Conn, CommandType.Text,
+            var reader = MySqlHelper.ExecuteReader(MySqlHelper.Conn, CommandType.Text,
                 "SELECT FriendCharacterId FROM Friends WHERE CharacterId = @charId ",
                 new MySqlParameter("@charId", charId));
 
