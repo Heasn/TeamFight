@@ -128,7 +128,7 @@ namespace TeamFight.Test
                                     var responseData = client.UploadData(url, "POST", postData);
 
                                     var result = JsonConvert.DeserializeObject<bool>(encoding.GetString(responseData));
-                                    Console.WriteLine(result ? "发出邀请成功" : "发出邀请失败");
+                                    Console.WriteLine(result ? "进入组队成功" : "进入组队失败");
                                 }
                             }
                             break;
@@ -137,7 +137,9 @@ namespace TeamFight.Test
                                 var url = baseurl + "/QuitTeam";
                                 var postData = encoding.GetBytes("CharId=" + charId);
                                 var responseData = client.UploadData(url, "POST", postData);
-                                Console.WriteLine(encoding.GetString(responseData));
+
+                                var result = JsonConvert.DeserializeObject<bool>(encoding.GetString(responseData));
+                                Console.WriteLine(result ? "退出组队成功" : "退出组队失败");
                             }
                             break;
              
