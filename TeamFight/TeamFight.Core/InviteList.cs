@@ -15,7 +15,10 @@ namespace TeamFight.Core
         {
         }
 
-        public static InviteList Instance { get; } = SingletonInstance;
+        public static InviteList Instance
+        {
+            get { SingletonInstance; }
+        }
 
         /// <summary>
         ///     添加邀请

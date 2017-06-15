@@ -40,5 +40,22 @@ namespace TeamFight.Core
         {
             Friends = DbContext.QueryFriendId(Id);
         }
+
+        public void AddFatigue(uint value)
+        {
+            Fatigue += value;
+        }
+
+        public void SubFatigue(uint value)
+        {
+            if (Fatigue < value)
+            {
+                Fatigue = 0;
+            }
+            else
+            {
+                Fatigue -= value;
+            }
+        }
     }
 }
