@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Nancy;
-using Nancy.ModelBinding;
 using TeamFight.Core;
 using TeamFight.Host.Models;
 
@@ -18,11 +17,11 @@ namespace TeamFight.Host.Modules
                 var result = false;
                 if (int.TryParse((string) Request.Form["CharId"], out charId))
                 {
-                    result= Common.OnlinePlayers.TryAdd(charId, DbContext.LoadCharacter(charId));
+                    Console.WriteLine("CharId:" + charId);
+                    result = Common.OnlinePlayers.TryAdd(charId, DbContext.LoadCharacter(charId));
                 }
                 return Response.AsJson(result);
             };
-
 
             //创建组队
             Post["/Create"] = p =>
@@ -31,6 +30,7 @@ namespace TeamFight.Host.Modules
                 var result = Guid.Empty;
                 if (int.TryParse((string) Request.Form["CharId"], out charId))
                 {
+                    Console.WriteLine("CharId:" + charId);
                     result = Create(charId);
                 }
                 return Response.AsJson(result);
@@ -69,6 +69,7 @@ namespace TeamFight.Host.Modules
                     };
                     inviteResult = InviteCharacter(model);
                 }
+
                 return Response.AsJson(inviteResult);
             };
 
@@ -77,10 +78,11 @@ namespace TeamFight.Host.Modules
             {
                 int charId;
                 var result = Guid.Empty;
-                if (int.TryParse((string)Request.Form["CharId"], out charId))
+                if (int.TryParse((string) Request.Form["CharId"], out charId))
                 {
                     result = QueryInvitation(charId);
                 }
+
                 return Response.AsJson(result);
             };
 
@@ -101,6 +103,7 @@ namespace TeamFight.Host.Modules
                     };
                     joinResult = JoinTeam(model);
                 }
+
                 return Response.AsJson(joinResult);
             };
 
@@ -109,10 +112,12 @@ namespace TeamFight.Host.Modules
             {
                 int charId;
                 var result = false;
-                if (int.TryParse((string)Request.Form["CharId"], out charId))
+
+                if (int.TryParse((string) Request.Form["CharId"], out charId))
                 {
                     result = QuitTeam(charId);
                 }
+
                 return Response.AsJson(result);
             };
 
@@ -133,6 +138,7 @@ namespace TeamFight.Host.Modules
                     };
                     joinResult = DismissTeam(model);
                 }
+
                 return Response.AsJson(joinResult);
             };
 
@@ -141,10 +147,12 @@ namespace TeamFight.Host.Modules
             {
                 int charId;
                 var result = false;
-                if (int.TryParse((string)Request.Form["CharId"], out charId))
+
+                if (int.TryParse((string) Request.Form["CharId"], out charId))
                 {
                     result = SendFightInvitation(charId);
                 }
+
                 return Response.AsJson(result);
             };
 
@@ -153,10 +161,12 @@ namespace TeamFight.Host.Modules
             {
                 int charId;
                 var result = false;
-                if (int.TryParse((string)Request.Form["CharId"], out charId))
+
+                if (int.TryParse((string) Request.Form["CharId"], out charId))
                 {
                     result = QueryFightInvitation(charId);
                 }
+
                 return Response.AsJson(result);
             };
 
@@ -167,8 +177,8 @@ namespace TeamFight.Host.Modules
                 bool isAccept;
                 var confirmResult = false;
 
-                if (Guid.TryParse((string)Request.Form["TeamId"], out teamId) &&
-                    bool.TryParse((string)Request.Form["ConfirmResult"], out isAccept))
+                if (Guid.TryParse((string) Request.Form["TeamId"], out teamId) &&
+                    bool.TryParse((string) Request.Form["ConfirmResult"], out isAccept))
                 {
                     var model = new ConfirmFightInvitationModel
                     {
@@ -177,6 +187,7 @@ namespace TeamFight.Host.Modules
                     };
                     confirmResult = ConfirmFightInvitation(model);
                 }
+
                 return Response.AsJson(confirmResult);
             };
 
@@ -188,8 +199,9 @@ namespace TeamFight.Host.Modules
 
                 if (Guid.TryParse((string) Request.Form["TeamId"], out teamId))
                 {
-                    pullResult= PullFightInvitationResult(teamId);
+                    pullResult = PullFightInvitationResult(teamId);
                 }
+
                 return Response.AsJson(pullResult);
             };
         }
@@ -205,8 +217,7 @@ namespace TeamFight.Host.Modules
 
             if (Common.OnlinePlayers.TryGetValue(charId, out character))
             {
-                var team = GameTeam.Create(character);
-                return team.Id;
+                return character.CreateTeam() ? character.GameTeam.Id : Guid.Empty;
             }
             return Guid.Empty;
         }
@@ -224,6 +235,7 @@ namespace TeamFight.Host.Modules
             {
                 return character.Friends;
             }
+
             return null;
         }
 
@@ -258,7 +270,8 @@ namespace TeamFight.Host.Modules
             Character member;
 
             if (!Common.OnlinePlayers.TryGetValue(model.CharacterId, out captain) ||
-                !Common.OnlinePlayers.TryGetValue(model.InvitedCharacterId, out member))
+                !Common.OnlinePlayers.TryGetValue(model.InvitedCharacterId, out member) ||
+                captain.GameTeam == null)
                 return false;
 
             return captain.GameTeam.InviteMember(captain, member);

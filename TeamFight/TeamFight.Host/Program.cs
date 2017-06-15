@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Nancy;
 using Nancy.Hosting.Self;
 
 namespace TeamFight.Host
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var url = new Url("http://localhost:9955");
             var hostConfig = new HostConfiguration {UrlReservations = new UrlReservations {CreateAutomatically = true}};

@@ -18,7 +18,7 @@ namespace TeamFight.Core
         public static TeamList Instance
         {
             get { return SingletonInstance; }
-        } 
+        }
 
         /// <summary>
         ///     添加队伍
@@ -141,7 +141,8 @@ namespace TeamFight.Core
 
             try
             {
-                teams = Teams.AsParallel().OrderBy(x => Guid.NewGuid()).Take(length).ToList();
+                teams =
+                    Teams.AsParallel().Where(x => x.Member == null).OrderBy(x => Guid.NewGuid()).Take(length).ToList();
             }
             finally
             {
