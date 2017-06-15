@@ -132,6 +132,15 @@ namespace TeamFight.Test
                                 }
                             }
                             break;
+                        case "quitteam":
+                        {
+                                var url = baseurl + "/QuitTeam";
+                                var postData = encoding.GetBytes("CharId=" + charId);
+                                var responseData = client.UploadData(url, "POST", postData);
+                                Console.WriteLine(encoding.GetString(responseData));
+                            }
+                            break;
+             
                     }
                 }
 

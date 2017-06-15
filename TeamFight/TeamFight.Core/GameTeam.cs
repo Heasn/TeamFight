@@ -10,11 +10,14 @@ namespace TeamFight.Core
             Id = Guid.NewGuid();
             Captain = captain;
             TeamList.Instance.AddTeam(this);
+            BuildTime = DateTime.Now;
         }
 
         public Guid Id { get; private set; }
         public Character Captain { get; set; }
         public Character Member { get; set; }
+        public DateTime BuildTime { get; private set; }
+
 
         public static GameTeam Create(Character captain)
         {

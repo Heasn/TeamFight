@@ -13,6 +13,8 @@ namespace TeamFight.Core
 
         private TeamList()
         {
+            Thread cleanThread = new Thread(CleanTeam) {IsBackground = true};
+            cleanThread.Start();
         }
 
         public static TeamList Instance
@@ -150,6 +152,35 @@ namespace TeamFight.Core
             }
 
             return teams;
+        }
+
+        private void CleanTeam()
+        {
+            while (true)
+            {
+                _readwritelock.AcquireReaderLock(2000);
+
+                if (_readwritelock.IsReaderLockHeld)
+                {
+                    try
+                    {
+                        var lockCookie = _readwritelock.UpgradeToWriterLock(200);
+
+                        if (_readwritelock.IsWriterLockHeld)
+                        {
+                            Teams.RemoveAll(x => (DateTime.Now - x.BuildTime).Minutes > 10);
+
+                            _readwritelock.DowngradeFromWriterLock(ref lockCookie);
+                        }
+                    }
+                    finally
+                    {
+                        _readwritelock.ReleaseReaderLock();
+                    }
+                }
+
+                Thread.Sleep(10*60*1000);
+            }
         }
     }
 }
