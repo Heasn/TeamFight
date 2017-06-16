@@ -1,4 +1,13 @@
-﻿using System.Collections.Generic;
+﻿// ****************************************
+// FileName:Player.cs
+// Description:玩家类
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+
+using System.Collections.Generic;
 using TeamFight.Core.Cache;
 using TeamFight.Core.Character.Team;
 using TeamFight.Core.Database;
@@ -7,7 +16,7 @@ namespace TeamFight.Core.Character
 {
     public sealed class Player
     {
-        #region 属性
+        #region 玩家基础属性
 
         /// <summary>
         /// 玩家Id
@@ -41,8 +50,14 @@ namespace TeamFight.Core.Character
 
         #endregion
 
+        /// <summary>
+        /// 队伍
+        /// </summary>
         public GameTeam GameTeam { get; private set; }
 
+        /// <summary>
+        /// 好友列表
+        /// </summary>
         public List<PlayerFriend> Friends { get; private set; }
 
         public Player(int id, string name, PlayerGender gender, uint level, uint physicalStrength, uint endurance)
@@ -78,7 +93,7 @@ namespace TeamFight.Core.Character
         public bool JoinTeam(GameTeam team)
         {
             GameTeam = team;
-            GameTeam.AddMember(GameTeam.Captain, this);
+            GameTeam.AddMember(this);
             InvitationCache.Instance.RemoveInvitation(this, InvitationCache.InvitationType.Team);
             return true;
         }
@@ -89,7 +104,7 @@ namespace TeamFight.Core.Character
         /// <returns></returns>
         public bool QuitTeam()
         {
-            GameTeam.RemoveMember(GameTeam.Captain, this);
+            GameTeam.RemoveMember(this);
             GameTeam = null;
             return true;
         }
@@ -120,6 +135,5 @@ namespace TeamFight.Core.Character
             friendList.ForEach(x => x.IsOnline = OnlinePlayersCache.Instance.IsPlayerOnline(x.FriendId));
             Friends = friendList;
         }
-
     }
 }

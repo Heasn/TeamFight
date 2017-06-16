@@ -1,24 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// ****************************************
+// FileName:DatabaseFactory.cs
+// Description:数据库工厂
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+using System;
 
 namespace TeamFight.Tools.Database
 {
-    public sealed class DatabaseFactory
+    public static class DatabaseFactory
     {
-        private DatabaseFactory()
-        {
-            
-        }
-
-        public static IDatabase Create(DatabaseType dbType, string connString)
+        /// <summary>
+        /// 根据数据库类型创建相应的数据库实例
+        /// </summary>
+        /// <param name="dbType">数据库类型</param>
+        /// <param name="connectionString">连接字符串</param>
+        /// <returns></returns>
+        public static IDatabase Create(DatabaseType dbType, string connectionString)
         {
             switch (dbType)
             {
                 case DatabaseType.MySql:
-                    return new MySqlDatabase(connString);
+                    return new MySqlDatabase(connectionString);
                 default:
                     throw new Exception("Unknown Database Type!");
             }

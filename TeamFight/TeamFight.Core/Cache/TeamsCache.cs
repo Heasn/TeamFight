@@ -1,9 +1,15 @@
-﻿using System;
+﻿// ****************************************
+// FileName:TeamsCache.cs
+// Description:缓存所有队伍
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TeamFight.Core.Character;
 using TeamFight.Core.Character.Team;
 
 namespace TeamFight.Core.Cache
@@ -15,7 +21,6 @@ namespace TeamFight.Core.Cache
 
         private TeamsCache()
         {
-
         }
 
         public static TeamsCache Instance

@@ -1,4 +1,13 @@
-﻿using System.Data;
+﻿// ****************************************
+// FileName:MySqlDatabaseHelper.cs
+// Description:MySQL数据库帮助类
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+
+using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace TeamFight.Tools.Database
@@ -30,11 +39,6 @@ namespace TeamFight.Tools.Database
         /// <summary>
         ///     用执行的数据库连接执行一个返回数据集的sql命令
         /// </summary>
-        /// <remarks>
-        ///     举例:
-        ///     MySqlDataReader r = ExecuteReader(connString, CommandType.StoredProcedure, "PublishOrders", new
-        ///     MySqlParameter("@prodid", 24));
-        /// </remarks>
         /// <param name="commandType">命令类型(存储过程, 文本, 等等)</param>
         /// <param name="commandStr">存储过程名称或者sql命令语句</param>
         /// <param name="commandParameters">执行命令所用参数的集合</param>
@@ -52,11 +56,6 @@ namespace TeamFight.Tools.Database
         /// <summary>
         ///     用指定的数据库连接字符串执行一个命令并返回一个数据集的第一列
         /// </summary>
-        /// <remarks>
-        ///     例如:
-        ///     Object obj = ExecuteScalar(connString, CommandType.StoredProcedure, "PublishOrders", new MySqlParameter("@prodid",
-        ///     24));
-        /// </remarks>
         /// <param name="commandType">命令类型(存储过程, 文本, 等等)</param>
         /// <param name="commandStr">存储过程名称或者sql命令语句</param>
         /// <param name="commandParameters">执行命令所用参数的集合</param>

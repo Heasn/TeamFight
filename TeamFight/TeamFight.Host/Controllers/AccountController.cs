@@ -1,19 +1,28 @@
-﻿using System.Collections.Generic;
+﻿// ****************************************
+// FileName:AccountController.cs
+// Description:账户相关功能API接口
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+
 using System.Web.Http;
 using TeamFight.Core.Cache;
 using TeamFight.Core.Character;
 using TeamFight.Core.Database;
+using TeamFight.Host.Models;
 
 namespace TeamFight.Host.Controllers
 {
     public class AccountController : ApiController
     {
         /// <summary>
-        /// 登录
+        /// 玩家登陆
         /// </summary>
         /// <param name="playerId">玩家Id</param>
-        /// <returns></returns>
-        public Models.PlayerPropertiesModel Login([FromBody]int playerId)
+        /// <returns>玩家相关数据</returns>
+        public PlayerPropertiesModel Login([FromBody]int playerId)
         {
            
             if (OnlinePlayersCache.Instance.IsPlayerOnline(playerId))
@@ -23,7 +32,7 @@ namespace TeamFight.Host.Controllers
 
             if (OnlinePlayersCache.Instance.AddPlayer(player))
             {
-                return new Models.PlayerPropertiesModel
+                return new PlayerPropertiesModel
                 {
                     Id = player.Id,
                     Name = player.Name,

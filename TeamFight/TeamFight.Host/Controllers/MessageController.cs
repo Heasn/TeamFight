@@ -1,8 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// ****************************************
+// FileName:MessageController.cs
+// Description:消息相关功能API接口
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+
 using System.Web.Http;
 using TeamFight.Core.Cache;
 

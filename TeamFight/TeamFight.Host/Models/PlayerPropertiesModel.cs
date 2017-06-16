@@ -1,4 +1,12 @@
-﻿namespace TeamFight.Host.Models
+﻿// ****************************************
+// FileName:PlayerPropertiesModel.cs
+// Description:
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+namespace TeamFight.Host.Models
 {
     public class PlayerPropertiesModel
     {

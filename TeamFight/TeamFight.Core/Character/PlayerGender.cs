@@ -1,4 +1,12 @@
-﻿namespace TeamFight.Core.Character
+﻿// ****************************************
+// FileName:PlayerGender.cs
+// Description:
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+namespace TeamFight.Core.Character
 {
     /// <summary>
     /// 玩家性别

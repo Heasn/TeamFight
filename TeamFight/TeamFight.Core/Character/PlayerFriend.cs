@@ -1,8 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// ****************************************
+// FileName:PlayerFriend.cs
+// Description:
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
 
 namespace TeamFight.Core.Character
 {
@@ -11,7 +14,7 @@ namespace TeamFight.Core.Character
         /// <summary>
         /// 好友角色Id
         /// </summary>
-        public int FriendId { get;private  set; }
+        public int FriendId { get; private set; }
 
         /// <summary>
         /// 好友姓名
@@ -21,19 +24,19 @@ namespace TeamFight.Core.Character
         /// <summary>
         /// 好友战力
         /// </summary>
-        public uint FriendCe { get;private  set; }
+        public uint FriendCe { get; private set; }
 
         /// <summary>
         /// 好友性别
         /// </summary>
-        public bool FriendGender { get;private  set; }
+        public bool FriendGender { get; private set; }
 
         /// <summary>
         /// 好友是否在线
         /// </summary>
         public bool IsOnline { get; set; }
 
-        public PlayerFriend(int id,string name, uint ce, bool gender)
+        public PlayerFriend(int id, string name, uint ce, bool gender)
         {
             FriendId = id;
             FriendName = name;

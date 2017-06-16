@@ -1,4 +1,13 @@
-﻿using System.Web.Http;
+﻿// ****************************************
+// FileName:Startup.cs
+// Description:宿主配置类
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+
+using System.Web.Http;
 using Owin;
 
 namespace TeamFight.Host

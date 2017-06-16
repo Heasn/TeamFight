@@ -1,4 +1,13 @@
-﻿using System;
+﻿// ****************************************
+// FileName:GameTeam.cs
+// Description:组队类
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+
+using System;
 using System.Collections.Generic;
 using TeamFight.Core.Cache;
 
@@ -6,34 +15,58 @@ namespace TeamFight.Core.Character.Team
 {
     public sealed class GameTeam
     {
+        /// <summary>
+        /// 队伍成员容量
+        /// </summary>
+        public const uint TeamMemberCapcity = 2;
 
-        public const int TeamMemberCapcity = 2;
-
+        /// <summary>
+        /// 队伍Id
+        /// </summary>
         public Guid Id { get; private set; }
 
-        public Player Captain { get;private set; }
+        /// <summary>
+        /// 队伍队长
+        /// </summary>
+        public Player Captain { get; private set; }
 
-        public List<Player> Members { get;private set; }
+        /// <summary>
+        /// 队伍成员
+        /// </summary>
+        public List<Player> Members { get; private set; }
 
+        /// <summary>
+        /// 队伍建立时间
+        /// </summary>
         public DateTime BuildTime { get; private set; }
 
-        public VoteCollector VoteCollector { get;private set; }
+        /// <summary>
+        /// 队伍投票箱
+        /// </summary>
+        public VoteCollector VoteCollector { get; private set; }
 
-        //创建
+        /// <summary>
+        /// 创建一个新的组队
+        /// </summary>
+        /// <param name="captain">队长玩家</param>
         public GameTeam(Player captain)
         {
             Id = Guid.NewGuid();
             Captain = captain;
             Members = new List<Player> {captain};
             TeamsCache.Instance.AddTeam(this);
-            BuildTime = DateTime.Now;
             VoteCollector = new VoteCollector(TeamMemberCapcity);
+            BuildTime = DateTime.Now;
         }
 
-        //加入队伍
-        public bool AddMember(Player captain, Player other)
+        /// <summary>
+        /// 将新成员加入队伍
+        /// </summary>
+        /// <param name="other">新成员玩家</param>
+        /// <returns>是否加入成功</returns>
+        public bool AddMember(Player other)
         {
-            if (ReferenceEquals(Captain, captain) && !ContainsMember(other))
+            if (!ContainsMember(other))
             {
                 Members.Add(other);
                 return true;
@@ -42,21 +75,31 @@ namespace TeamFight.Core.Character.Team
             return false;
         }
 
+        /// <summary>
+        /// 确认队伍中是否存在某个玩家
+        /// </summary>
+        /// <param name="member">成员玩家</param>
+        /// <returns></returns>
         public bool ContainsMember(Player member)
         {
             return Members.Exists(x => x.Id == member.Id);
         }
 
-        //移除队员
-        public bool RemoveMember(Player captain, Player member)
+        /// <summary>
+        /// 移除队伍中的某个玩家
+        /// </summary>
+        /// <param name="member"></param>
+        /// <returns></returns>
+        public bool RemoveMember(Player member)
         {
             //队长解散
-            if (captain.Id == member.Id)
+            if (Captain.Id == member.Id)
             {
                 Members.ForEach(x => x.QuitTeam());
+                return true;
             }
 
-            if (ReferenceEquals(Captain, captain) && ContainsMember(member))
+            if (ContainsMember(member))
             {
                 Members.RemoveAll(x => x.Id == member.Id);
                 return true;

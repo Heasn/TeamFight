@@ -1,4 +1,13 @@
-﻿using System.Data;
+﻿// ****************************************
+// FileName:MySqlDatabase.cs
+// Description:MySQL数据库类
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+
+using System.Data;
 using System.Data.Common;
 using MySql.Data.MySqlClient;
 

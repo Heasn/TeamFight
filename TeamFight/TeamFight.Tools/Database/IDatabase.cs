@@ -1,5 +1,13 @@
-﻿using System;
-using System.Data;
+﻿// ****************************************
+// FileName:IDatabase.cs
+// Description:数据库接口
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+
+using System;
 using System.Data.Common;
 
 namespace TeamFight.Tools.Database

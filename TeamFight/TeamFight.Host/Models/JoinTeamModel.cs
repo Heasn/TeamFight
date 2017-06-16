@@ -1,4 +1,13 @@
-﻿using System;
+﻿// ****************************************
+// FileName:JoinTeamModel.cs
+// Description:
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-15
+// Revision History:
+// ****************************************
+
+using System;
 
 namespace TeamFight.Host.Models
 {

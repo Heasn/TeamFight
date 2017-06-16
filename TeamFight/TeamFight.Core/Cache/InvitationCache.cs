@@ -1,8 +1,15 @@
-﻿using System;
+﻿// ****************************************
+// FileName:InvitationCache.cs
+// Description:缓存所有邀请
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TeamFight.Core.Character;
 using TeamFight.Core.Character.Team;
 
@@ -26,7 +33,6 @@ namespace TeamFight.Core.Cache
 
         private InvitationCache()
         {
-
         }
 
         public static InvitationCache Instance
@@ -41,9 +47,9 @@ namespace TeamFight.Core.Cache
         /// <param name="type">邀请类型</param>
         /// <param name="team">邀请队伍</param>
         /// <returns></returns>
-        public bool AddInvitation(Player player,InvitationType type,GameTeam team)
+        public bool AddInvitation(Player player, InvitationType type, GameTeam team)
         {
-            if (IsInvitationExist(player,type))
+            if (IsInvitationExist(player, type))
                 return false;
 
             Invitations.Add(Tuple.Create(player, type, team));
@@ -55,7 +61,7 @@ namespace TeamFight.Core.Cache
         /// </summary>
         /// <param name="player">被邀请玩家</param>
         /// <param name="type">邀请类型</param>
-        public void RemoveInvitation(Player player,InvitationType type)
+        public void RemoveInvitation(Player player, InvitationType type)
         {
             Invitations.RemoveAll(x => (x.Item1.Id == player.Id) && (x.Item2 == type));
         }

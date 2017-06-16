@@ -1,4 +1,13 @@
-﻿using System;
+﻿// ****************************************
+// FileName:Program.cs
+// Description:Web API 宿主启动类
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-15
+// Revision History:
+// ****************************************
+
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using Microsoft.Owin.Hosting;

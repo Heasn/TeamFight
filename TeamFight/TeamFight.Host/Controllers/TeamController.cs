@@ -1,11 +1,17 @@
-﻿using System;
+﻿// ****************************************
+// FileName:TeamController.cs
+// Description:
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Http;
-using TeamFight.Core;
 using TeamFight.Core.Cache;
-using TeamFight.Core.Character;
 using TeamFight.Host.Models;
 
 namespace TeamFight.Host.Controllers
@@ -53,14 +59,14 @@ namespace TeamFight.Host.Controllers
         /// </summary>
         /// <param name="model">接收到的邀请玩家的数据模型，包含发起人Id（CharacterId）与被邀请人Id（InvitedCharacterId）</param>
         /// <returns>邀请成功返回true，邀请失败返回false</returns>
-        public bool InviteCharacter([FromBody] Models.InviteCharacterModel model)
+        public bool InviteCharacter([FromBody] InviteCharacterModel model)
         {
             var player = OnlinePlayersCache.Instance.FindPlayer(model.CharacterId);
 
             if (player == null)
                 return false;
 
-            return player.AddInvitation(model.InvitedCharacterId, InvitationCache.InvitationType.Team);
+            return ReferenceEquals(player, player.GameTeam.Captain) && player.AddInvitation(model.InvitedCharacterId, InvitationCache.InvitationType.Team);
         }
 
         /// <summary>

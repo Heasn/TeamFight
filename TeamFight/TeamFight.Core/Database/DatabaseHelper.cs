@@ -1,4 +1,13 @@
-﻿using System.Collections.Generic;
+﻿// ****************************************
+// FileName:DatabaseHelper.cs
+// Description:根据数据生成实体
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-16
+// Revision History:
+// ****************************************
+
+using System.Collections.Generic;
 using System.Data;
 using MySql.Data.MySqlClient;
 using TeamFight.Core.Character;
@@ -23,7 +32,7 @@ namespace TeamFight.Core.Database
                     return new Player(
                         reader.GetInt32("Id"),
                         reader.GetString("Name"),
-                        (PlayerGender)reader.GetInt32("Gender"),
+                        (PlayerGender) reader.GetInt32("Gender"),
                         reader.GetUInt32("Level"),
                         reader.GetUInt32("PhysicalStrength"),
                         reader.GetUInt32("Endurance")
