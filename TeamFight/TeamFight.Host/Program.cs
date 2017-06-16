@@ -1,6 +1,7 @@
 ﻿using System;
-using Nancy;
-using Nancy.Hosting.Self;
+using System.Collections.Generic;
+using System.Net.Http;
+using Microsoft.Owin.Hosting;
 
 namespace TeamFight.Host
 {
@@ -8,15 +9,25 @@ namespace TeamFight.Host
     {
         private static void Main(string[] args)
         {
-            var url = new Url("http://localhost:9955");
-            var hostConfig = new HostConfiguration {UrlReservations = new UrlReservations {CreateAutomatically = true}};
-            using (var host = new NancyHost(hostConfig, url))
-            {
-                host.Start();
+            string baseAddress = "http://localhost:9000/";
+            WebApp.Start<Startup>(baseAddress);
+            Console.WriteLine("WebApp服务器启动成功 URL:"+baseAddress);
 
-                Console.WriteLine("WEBSERVER 已启动 URL：" + url);
-                Console.ReadLine();
-            }
+            HttpClient client = new HttpClient();
+
+            HttpContent b = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string,string>("","1")
+            });
+            
+           
+            var response = client.PostAsync(baseAddress + "api/account/login",b).Result;
+
+            Console.WriteLine(response);
+            Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            Console.ReadLine();
+
+            Console.ReadLine();
         }
     }
 }

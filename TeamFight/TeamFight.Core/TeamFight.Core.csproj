@@ -42,14 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character.cs" />
-    <Compile Include="Common.cs" />
-    <Compile Include="DbContext.cs" />
-    <Compile Include="FightInviteList.cs" />
-    <Compile Include="GameTeam.cs" />
-    <Compile Include="InviteList.cs" />
+    <Compile Include="Cache\InvitationCache.cs" />
+    <Compile Include="Cache\OnlinePlayersCache.cs" />
+    <Compile Include="Cache\TeamsCache.cs" />
+    <Compile Include="Character\PlayerGender.cs" />
+    <Compile Include="Character\Player.cs" />
+    <Compile Include="Character\PlayerFriend.cs" />
+    <Compile Include="Character\Team\VoteCollector.cs" />
+    <Compile Include="Database\DatabaseHelper.cs" />
+    <Compile Include="Character\Team\GameTeam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TeamList.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TeamFight.Tools\TeamFight.Tools.csproj">
