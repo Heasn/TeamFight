@@ -8,13 +8,14 @@
 // ****************************************
 
 using System.Web.Http;
-using TeamFight.Core.Cache;
-using TeamFight.Core.Character;
-using TeamFight.Core.Database;
-using TeamFight.Host.Models;
 
 namespace TeamFight.Host.Controllers
 {
+    using TeamFight.Core.Cache;
+    using TeamFight.Core.Character;
+    using TeamFight.Core.Database;
+    using TeamFight.Host.Models;
+
     public class AccountController : ApiController
     {
         /// <summary>
@@ -24,7 +25,7 @@ namespace TeamFight.Host.Controllers
         /// <returns>玩家相关数据</returns>
         public PlayerPropertiesModel Login([FromBody]int playerId)
         {
-           
+
             if (OnlinePlayersCache.Instance.IsPlayerOnline(playerId))
                 return null;
 

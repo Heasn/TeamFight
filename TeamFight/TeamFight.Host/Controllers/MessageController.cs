@@ -8,10 +8,13 @@
 // ****************************************
 
 using System.Web.Http;
-using TeamFight.Core.Cache;
 
 namespace TeamFight.Host.Controllers
 {
+    using Newtonsoft.Json;
+    using TeamFight.Core.Cache;
+    using TeamFight.Host.Messager.Team;
+
     public class MessageController : ApiController
     {
         /// <summary>
@@ -19,29 +22,24 @@ namespace TeamFight.Host.Controllers
         /// </summary>
         /// <param name="charId"></param>
         /// <returns></returns>
-        public dynamic PullOrder([FromBody] int charId)
+        public string GetMessage([FromBody] int charId)
         {
+            var messager = new TeamMessagerProxy();
+
             var player = OnlinePlayersCache.Instance.FindPlayer(charId);
 
             if (InvitationCache.Instance.IsInvitationExist(player, InvitationCache.InvitationType.Team))
             {
-                return Json(new
-                {
-                    mtype = "team",
-                    id = InvitationCache.Instance.FindTeam(player, InvitationCache.InvitationType.Team).Id
-                });
+                return messager.SendTeamInvitation(player);
             }
 
-            if (InvitationCache.Instance.IsInvitationExist(player, InvitationCache.InvitationType.Fight))
+            if (InvitationCache.Instance.IsInvitationExist(player, InvitationCache.InvitationType.Team))
             {
-                return Json(new
-                {
-                    mtype = "fight",
-                    id = InvitationCache.Instance.FindTeam(player, InvitationCache.InvitationType.Team).Id
-                });
+                return messager.SendFightInvitation(player);
             }
 
-            return null;
+            return JsonConvert.SerializeObject("null");
         }
+
     }
 }
