@@ -1,11 +1,12 @@
 ﻿// ****************************************
 // FileName:DatabaseFactory.cs
-// Description:数据库工厂
+// Description:
 // Tables:Nothing
 // Author:陈柏宇
 // Create Date:2017-06-16
 // Revision History:
 // ****************************************
+
 using System;
 
 namespace TeamFight.Tools.Database

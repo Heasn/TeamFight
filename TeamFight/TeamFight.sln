@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamFight.Host", "TeamFight
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamFight.Test", "TeamFight.Test\TeamFight.Test.csproj", "{03AD0F2D-89B3-439D-8038-DD388644C1BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamFight.Models", "TeamFight.Models\TeamFight.Models.csproj", "{4EE3FEF4-C4E9-45AC-89CA-A8C998950859}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{03AD0F2D-89B3-439D-8038-DD388644C1BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03AD0F2D-89B3-439D-8038-DD388644C1BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03AD0F2D-89B3-439D-8038-DD388644C1BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EE3FEF4-C4E9-45AC-89CA-A8C998950859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EE3FEF4-C4E9-45AC-89CA-A8C998950859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EE3FEF4-C4E9-45AC-89CA-A8C998950859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EE3FEF4-C4E9-45AC-89CA-A8C998950859}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

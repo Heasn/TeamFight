@@ -1,6 +1,6 @@
 ﻿// ****************************************
 // FileName:Startup.cs
-// Description:宿主配置类
+// Description:
 // Tables:Nothing
 // Author:陈柏宇
 // Create Date:2017-06-16

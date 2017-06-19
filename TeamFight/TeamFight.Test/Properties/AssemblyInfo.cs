@@ -1,4 +1,13 @@
-﻿using System.Reflection;
+﻿// ****************************************
+// FileName:AssemblyInfo.cs
+// Description:
+// Tables:Nothing
+// Author:陈柏宇
+// Create Date:2017-06-15
+// Revision History:
+// ****************************************
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // 有关程序集的一般信息由以下

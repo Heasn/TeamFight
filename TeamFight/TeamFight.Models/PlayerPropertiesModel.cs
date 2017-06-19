@@ -3,10 +3,10 @@
 // Description:
 // Tables:Nothing
 // Author:陈柏宇
-// Create Date:2017-06-16
+// Create Date:2017-06-19
 // Revision History:
 // ****************************************
-namespace TeamFight.Host.Models
+namespace TeamFight.Models
 {
     public class PlayerPropertiesModel
     {
@@ -39,5 +39,10 @@ namespace TeamFight.Host.Models
         /// 玩家耐力
         /// </summary>
         public uint Endurance { get; set; }
+
+        /// <summary>
+        /// 玩家战力
+        /// </summary>
+        public uint CombatEffectiveness { get; set; }
     }
 }

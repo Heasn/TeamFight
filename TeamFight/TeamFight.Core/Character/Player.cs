@@ -1,6 +1,6 @@
 ﻿// ****************************************
 // FileName:Player.cs
-// Description:玩家类
+// Description:
 // Tables:Nothing
 // Author:陈柏宇
 // Create Date:2017-06-16
@@ -8,12 +8,17 @@
 // ****************************************
 
 using System.Collections.Generic;
-using TeamFight.Core.Cache;
-using TeamFight.Core.Character.Team;
-using TeamFight.Core.Database;
 
 namespace TeamFight.Core.Character
 {
+    using Cache;
+    using Team;
+    using Data;
+    using Models;
+
+    /// <summary>
+    /// 玩家类
+    /// </summary>
     public sealed class Player
     {
         #region 玩家基础属性
@@ -48,6 +53,11 @@ namespace TeamFight.Core.Character
         /// </summary>
         public uint Endurance { get; private set; }
 
+        /// <summary>
+        /// 玩家战力
+        /// </summary>
+        public uint CombatEffectiveness { get; set; }
+
         #endregion
 
         /// <summary>
@@ -58,9 +68,19 @@ namespace TeamFight.Core.Character
         /// <summary>
         /// 好友列表
         /// </summary>
-        public List<PlayerFriend> Friends { get; private set; }
+        public List<PlayerFriendModel> Friends { get; private set; }
 
-        public Player(int id, string name, PlayerGender gender, uint level, uint physicalStrength, uint endurance)
+        /// <summary>
+        /// 构造玩家
+        /// </summary>
+        /// <param name="id">玩家Id</param>
+        /// <param name="name">玩家姓名</param>
+        /// <param name="gender">玩家性别</param>
+        /// <param name="level">玩家等级</param>
+        /// <param name="physicalStrength">玩家体力</param>
+        /// <param name="endurance">玩家耐力</param>
+        /// <param name="combatEffectiveness">玩家战力</param>
+        public Player(int id, string name, PlayerGender gender, uint level, uint physicalStrength, uint endurance,uint combatEffectiveness)
         {
             Id = id;
             Name = name;
@@ -68,6 +88,7 @@ namespace TeamFight.Core.Character
             Level = level;
             PhysicalStrength = physicalStrength;
             Endurance = endurance;
+            CombatEffectiveness = combatEffectiveness;
             UpdateFriends();
         }
 
@@ -131,9 +152,46 @@ namespace TeamFight.Core.Character
         /// </summary>
         public void UpdateFriends()
         {
-            var friendList = DatabaseHelper.GetFriendIdList(Id);
+            var factory = (FriendsFactory)DataFactory.Create(DataFactory.FactoryType.Friend);
+            var friendList = factory.GetFriendIdList(Id);
             friendList.ForEach(x => x.IsOnline = OnlinePlayersCache.Instance.IsPlayerOnline(x.FriendId));
             Friends = friendList;
+        }
+
+        /// <summary>
+        /// 增加耐力
+        /// </summary>
+        /// <param name="value"></param>
+        public void AddEndurance(uint value)
+        {
+            Endurance += value;
+        }
+
+        /// <summary>
+        /// 减少耐力
+        /// </summary>
+        /// <param name="value"></param>
+        public void SubEndurance(uint value)
+        {
+            Endurance -= value;
+        }
+
+        /// <summary>
+        /// 增加体力
+        /// </summary>
+        /// <param name="value"></param>
+        public void AddPhysicalStrength(uint value)
+        {
+            PhysicalStrength += value;
+        }
+
+        /// <summary>
+        /// 减少体力
+        /// </summary>
+        /// <param name="value"></param>
+        public void SubPhysicalStrength(uint value)
+        {
+            PhysicalStrength -= value;
         }
     }
 }

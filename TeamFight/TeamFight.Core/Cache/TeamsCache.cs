@@ -1,6 +1,6 @@
 ﻿// ****************************************
 // FileName:TeamsCache.cs
-// Description:缓存所有队伍
+// Description:
 // Tables:Nothing
 // Author:陈柏宇
 // Create Date:2017-06-16
@@ -10,10 +10,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TeamFight.Core.Character.Team;
 
 namespace TeamFight.Core.Cache
 {
+    using Character.Team;
+
+    /// <summary>
+    /// 队伍缓存
+    /// </summary>
     public class TeamsCache
     {
         private static readonly TeamsCache SingletonInstance = new TeamsCache();

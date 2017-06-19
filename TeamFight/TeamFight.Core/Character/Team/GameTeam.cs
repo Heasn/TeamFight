@@ -1,6 +1,6 @@
 ﻿// ****************************************
 // FileName:GameTeam.cs
-// Description:组队类
+// Description:
 // Tables:Nothing
 // Author:陈柏宇
 // Create Date:2017-06-16
@@ -9,11 +9,16 @@
 
 using System;
 using System.Collections.Generic;
-using TeamFight.Core.Cache;
+using System.Linq;
 
 namespace TeamFight.Core.Character.Team
 {
-    public sealed class GameTeam
+    using Cache;
+
+    /// <summary>
+    /// 组队
+    /// </summary>
+    public class GameTeam
     {
         /// <summary>
         /// 队伍成员容量
@@ -54,9 +59,9 @@ namespace TeamFight.Core.Character.Team
             Id = Guid.NewGuid();
             Captain = captain;
             Members = new List<Player> {captain};
-            TeamsCache.Instance.AddTeam(this);
             VoteCollector = new VoteCollector(TeamMemberCapcity);
             BuildTime = DateTime.Now;
+            TeamsCache.Instance.AddTeam(this);
         }
 
         /// <summary>
@@ -95,7 +100,10 @@ namespace TeamFight.Core.Character.Team
             //队长解散
             if (Captain.Id == member.Id)
             {
-                Members.ForEach(x => x.QuitTeam());
+                foreach (var teamMember in Members.Where(x => !ReferenceEquals(x, member)))
+                {
+                    teamMember.QuitTeam();
+                }
                 return true;
             }
 

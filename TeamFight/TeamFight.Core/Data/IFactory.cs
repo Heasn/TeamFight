@@ -1,15 +1,17 @@
 ﻿// ****************************************
-// FileName:DatabaseType.cs
+// FileName:IFactory.cs
 // Description:
 // Tables:Nothing
 // Author:陈柏宇
-// Create Date:2017-06-16
+// Create Date:2017-06-19
 // Revision History:
 // ****************************************
-namespace TeamFight.Tools.Database
+namespace TeamFight.Core.Data
 {
-    public enum DatabaseType
+    /// <summary>
+    /// 数据工厂接口
+    /// </summary>
+    public interface IFactory
     {
-        MySql
     }
 }

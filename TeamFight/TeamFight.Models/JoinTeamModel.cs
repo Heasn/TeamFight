@@ -3,17 +3,17 @@
 // Description:
 // Tables:Nothing
 // Author:陈柏宇
-// Create Date:2017-06-15
+// Create Date:2017-06-19
 // Revision History:
 // ****************************************
 
 using System;
 
-namespace TeamFight.Host.Models
+namespace TeamFight.Models
 {
     public class JoinTeamModel
     {
         public Guid TeamId { get; set; }
-        public int InvitedCharacterId { get; set; }
+        public int InvitedPlayerId { get; set; }
     }
 }

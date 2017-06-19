@@ -1,6 +1,6 @@
 ﻿// ****************************************
 // FileName:OnlinePlayersCache.cs
-// Description:缓存在线的玩家
+// Description:
 // Tables:Nothing
 // Author:陈柏宇
 // Create Date:2017-06-16
@@ -8,10 +8,14 @@
 // ****************************************
 
 using System.Collections.Generic;
-using TeamFight.Core.Character;
 
 namespace TeamFight.Core.Cache
 {
+    using Character;
+
+    /// <summary>
+    /// 在线玩家缓存
+    /// </summary>
     public class OnlinePlayersCache
     {
         private static readonly OnlinePlayersCache SingletonInstance = new OnlinePlayersCache();

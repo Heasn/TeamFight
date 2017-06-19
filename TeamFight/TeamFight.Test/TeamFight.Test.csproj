@@ -48,6 +48,9 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxy\AccountMessagerProxy.cs" />
+    <Compile Include="Proxy\InvitationMessagerProxy.cs" />
+    <Compile Include="Proxy\TeamMessagerProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -57,6 +60,10 @@
     <ProjectReference Include="..\TeamFight.Host\TeamFight.Host.csproj">
       <Project>{2cad9387-ec9e-492c-8d0e-4117b5d136ab}</Project>
       <Name>TeamFight.Host</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamFight.Models\TeamFight.Models.csproj">
+      <Project>{4ee3fef4-c4e9-45ac-89ca-a8c998950859}</Project>
+      <Name>TeamFight.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

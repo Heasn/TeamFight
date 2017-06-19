@@ -1,6 +1,6 @@
 ﻿// ****************************************
 // FileName:InvitationCache.cs
-// Description:缓存所有邀请
+// Description:
 // Tables:Nothing
 // Author:陈柏宇
 // Create Date:2017-06-16
@@ -10,11 +10,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TeamFight.Core.Character;
-using TeamFight.Core.Character.Team;
 
 namespace TeamFight.Core.Cache
 {
+    using Character;
+    using Character.Team;
+
+    /// <summary>
+    /// 邀请缓存
+    /// </summary>
     public class InvitationCache
     {
         /// <summary>

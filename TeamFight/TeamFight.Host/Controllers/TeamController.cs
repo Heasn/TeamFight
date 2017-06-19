@@ -11,11 +11,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using TeamFight.Core.Cache;
-using TeamFight.Host.Models;
+
 
 namespace TeamFight.Host.Controllers
 {
+    using Core.Cache;
+    using Models;
+
+    /// <summary>
+    /// 组队类控制器
+    /// </summary>
     public class TeamController : ApiController
     {
         /// <summary>
@@ -61,12 +66,12 @@ namespace TeamFight.Host.Controllers
         /// <returns>邀请成功返回true，邀请失败返回false</returns>
         public bool InviteCharacter([FromBody] InviteCharacterModel model)
         {
-            var player = OnlinePlayersCache.Instance.FindPlayer(model.CharacterId);
+            var player = OnlinePlayersCache.Instance.FindPlayer(model.PlayerId);
 
             if (player == null)
                 return false;
 
-            return ReferenceEquals(player, player.GameTeam.Captain) && player.AddInvitation(model.InvitedCharacterId, InvitationCache.InvitationType.Team);
+            return ReferenceEquals(player, player.GameTeam.Captain) && player.AddInvitation(model.InvitedPlayerId, InvitationCache.InvitationType.Team);
         }
 
         /// <summary>
@@ -81,7 +86,7 @@ namespace TeamFight.Host.Controllers
             if (team == null)
                 return false;
 
-            var player = OnlinePlayersCache.Instance.FindPlayer(model.InvitedCharacterId);
+            var player = OnlinePlayersCache.Instance.FindPlayer(model.InvitedPlayerId);
 
             if (player == null)
                 return false;
@@ -132,7 +137,7 @@ namespace TeamFight.Host.Controllers
         /// </summary>
         /// <param name="model">确认战斗请求结果数据模型</param>
         /// <returns>确认结果是否成功</returns>
-        public bool VoiteFightInvitation([FromBody]ConfirmFightInvitationModel model)
+        public bool VoteFightInvitation([FromBody]ConfirmFightInvitationModel model)
         {
             var team = TeamsCache.Instance.FindTeam(model.TeamId);
             if (team != null)

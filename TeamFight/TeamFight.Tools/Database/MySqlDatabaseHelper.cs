@@ -1,6 +1,6 @@
 ﻿// ****************************************
 // FileName:MySqlDatabaseHelper.cs
-// Description:MySQL数据库帮助类
+// Description:
 // Tables:Nothing
 // Author:陈柏宇
 // Create Date:2017-06-16

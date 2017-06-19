@@ -1,9 +1,9 @@
 ﻿// ****************************************
 // FileName:MessageController.cs
-// Description:消息相关功能API接口
+// Description:
 // Tables:Nothing
 // Author:陈柏宇
-// Create Date:2017-06-16
+// Create Date:2017-06-19
 // Revision History:
 // ****************************************
 
@@ -11,34 +11,42 @@ using System.Web.Http;
 
 namespace TeamFight.Host.Controllers
 {
-    using Newtonsoft.Json;
-    using TeamFight.Core.Cache;
-    using TeamFight.Host.Messager.Team;
+    using Core.Cache;
 
+    /// <summary>
+    /// 消息类控制器
+    /// </summary>
     public class MessageController : ApiController
     {
         /// <summary>
         /// 轮询获取消息
         /// </summary>
-        /// <param name="charId"></param>
+        /// <param name="playerId"></param>
         /// <returns></returns>
-        public string GetMessage([FromBody] int charId)
+        public IHttpActionResult PullMessage([FromBody] int playerId)
         {
-            var messager = new TeamMessagerProxy();
-
-            var player = OnlinePlayersCache.Instance.FindPlayer(charId);
+            
+            var player = OnlinePlayersCache.Instance.FindPlayer(playerId);
 
             if (InvitationCache.Instance.IsInvitationExist(player, InvitationCache.InvitationType.Team))
             {
-                return messager.SendTeamInvitation(player);
+                return Json(new
+                {
+                    mtype = "team",
+                    id = InvitationCache.Instance.FindTeam(player, InvitationCache.InvitationType.Team).Id
+                });
             }
 
             if (InvitationCache.Instance.IsInvitationExist(player, InvitationCache.InvitationType.Team))
             {
-                return messager.SendFightInvitation(player);
+                return Json(new
+                {
+                    mtype = "fight",
+                    id = InvitationCache.Instance.FindTeam(player, InvitationCache.InvitationType.Team).Id
+                });
             }
 
-            return JsonConvert.SerializeObject("null");
+            return Json("null");
         }
 
     }

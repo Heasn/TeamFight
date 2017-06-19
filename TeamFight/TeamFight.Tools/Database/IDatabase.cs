@@ -1,6 +1,6 @@
 ﻿// ****************************************
 // FileName:IDatabase.cs
-// Description:数据库接口
+// Description:
 // Tables:Nothing
 // Author:陈柏宇
 // Create Date:2017-06-16

@@ -1,21 +1,25 @@
 ﻿// ****************************************
 // FileName:AccountController.cs
-// Description:账户相关功能API接口
+// Description:
 // Tables:Nothing
 // Author:陈柏宇
-// Create Date:2017-06-16
+// Create Date:2017-06-19
 // Revision History:
 // ****************************************
 
 using System.Web.Http;
 
+
 namespace TeamFight.Host.Controllers
 {
-    using TeamFight.Core.Cache;
-    using TeamFight.Core.Character;
-    using TeamFight.Core.Database;
-    using TeamFight.Host.Models;
+    using Core.Cache;
+    using Core.Character;
+    using Core.Data;
+    using Models;
 
+    /// <summary>
+    /// 账户类控制器
+    /// </summary>
     public class AccountController : ApiController
     {
         /// <summary>
@@ -29,9 +33,10 @@ namespace TeamFight.Host.Controllers
             if (OnlinePlayersCache.Instance.IsPlayerOnline(playerId))
                 return null;
 
-            var player = DatabaseHelper.LoadPlayer(playerId);
+            var factory = (PlayersFactory)DataFactory.Create(DataFactory.FactoryType.Player);
+            var player = factory.FindPlayer(playerId);
 
-            if (OnlinePlayersCache.Instance.AddPlayer(player))
+            if (player != null && OnlinePlayersCache.Instance.AddPlayer(player))
             {
                 return new PlayerPropertiesModel
                 {
@@ -45,6 +50,23 @@ namespace TeamFight.Host.Controllers
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// 获取好友列表
+        /// </summary>
+        /// <param name="playerId">玩家Id</param>
+        /// <returns></returns>
+        public PlayerFriendModel[] PullFriends([FromBody] int playerId)
+        {
+            var player = OnlinePlayersCache.Instance.FindPlayer(playerId);
+
+            if (player == null)
+                return null;
+
+            player.UpdateFriends();
+
+            return player.Friends.ToArray();
         }
     }
 }

@@ -35,12 +35,12 @@
     <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.2.0.2\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.3.1.0\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin.Hosting, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Hosting.2.0.2\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Hosting, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Hosting.3.1.0\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -74,17 +74,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
-    <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
-    <Compile Include="Messager\IMessager.cs" />
-    <Compile Include="Messager\Team\ITeamMessager.cs" />
-    <Compile Include="Messager\Team\TeamMessager.cs" />
-    <Compile Include="Messager\Team\TeamMessagerProxy.cs" />
-    <Compile Include="Models\ConfirmFightInvitationModel.cs" />
-    <Compile Include="Models\InviteCharacterModel.cs" />
-    <Compile Include="Models\JoinTeamModel.cs" />
-    <Compile Include="Models\PlayerPropertiesModel.cs" />
-    <Compile Include="Models\RecommendTeamModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -97,6 +87,10 @@
     <ProjectReference Include="..\TeamFight.Core\TeamFight.Core.csproj">
       <Project>{c9e71910-fcae-473a-a9eb-63ee0bda2d09}</Project>
       <Name>TeamFight.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamFight.Models\TeamFight.Models.csproj">
+      <Project>{4ee3fef4-c4e9-45ac-89ca-a8c998950859}</Project>
+      <Name>TeamFight.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
