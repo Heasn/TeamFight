@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-
 namespace TeamFight.Host.Controllers
 {
     using Core.Cache;
@@ -33,7 +32,9 @@ namespace TeamFight.Host.Controllers
             var player = OnlinePlayersCache.Instance.FindPlayer(playerId);
 
             if (player == null)
+            {
                 return Guid.Empty;
+            }
 
             return player.CreateTeam() ? player.GameTeam.Id : Guid.Empty;
         }
@@ -48,7 +49,9 @@ namespace TeamFight.Host.Controllers
             var teams = TeamsCache.Instance.GetRecommendTeams(10);
 
             if (teams == null)
+            {
                 return null;
+            }
 
             return teams.Select(x => new RecommendTeamModel
             {
@@ -69,7 +72,9 @@ namespace TeamFight.Host.Controllers
             var player = OnlinePlayersCache.Instance.FindPlayer(model.PlayerId);
 
             if (player == null)
+            {
                 return false;
+            }
 
             return ReferenceEquals(player, player.GameTeam.Captain) && player.AddInvitation(model.InvitedPlayerId, InvitationCache.InvitationType.Team);
         }
@@ -84,12 +89,16 @@ namespace TeamFight.Host.Controllers
             var team = TeamsCache.Instance.FindTeam(model.TeamId);
 
             if (team == null)
+            {
                 return false;
+            }
 
             var player = OnlinePlayersCache.Instance.FindPlayer(model.InvitedPlayerId);
 
             if (player == null)
+            {
                 return false;
+            }
 
             return player.JoinTeam(team);
         }
@@ -104,7 +113,9 @@ namespace TeamFight.Host.Controllers
             var player = OnlinePlayersCache.Instance.FindPlayer(charId);
 
             if (player == null)
+            {
                 return false;
+            }
 
             return player.QuitTeam();
         }
@@ -119,7 +130,9 @@ namespace TeamFight.Host.Controllers
             var player = OnlinePlayersCache.Instance.FindPlayer(charId);
 
             if (player == null)
+            {
                 return false;
+            }
 
             foreach (var member in player.GameTeam.Members)
             {

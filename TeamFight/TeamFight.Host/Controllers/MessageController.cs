@@ -37,12 +37,12 @@ namespace TeamFight.Host.Controllers
                 });
             }
 
-            if (InvitationCache.Instance.IsInvitationExist(player, InvitationCache.InvitationType.Team))
+            if (InvitationCache.Instance.IsInvitationExist(player, InvitationCache.InvitationType.Fight))
             {
                 return Json(new
                 {
                     mtype = "fight",
-                    id = InvitationCache.Instance.FindTeam(player, InvitationCache.InvitationType.Team).Id
+                    id = InvitationCache.Instance.FindTeam(player, InvitationCache.InvitationType.Fight).Id
                 });
             }
 

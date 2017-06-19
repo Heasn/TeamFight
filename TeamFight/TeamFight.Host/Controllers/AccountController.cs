@@ -9,7 +9,6 @@
 
 using System.Web.Http;
 
-
 namespace TeamFight.Host.Controllers
 {
     using Core.Cache;
@@ -31,7 +30,9 @@ namespace TeamFight.Host.Controllers
         {
 
             if (OnlinePlayersCache.Instance.IsPlayerOnline(playerId))
+            {
                 return null;
+            }
 
             var factory = (PlayersFactory)DataFactory.Create(DataFactory.FactoryType.Player);
             var player = factory.FindPlayer(playerId);
@@ -62,7 +63,9 @@ namespace TeamFight.Host.Controllers
             var player = OnlinePlayersCache.Instance.FindPlayer(playerId);
 
             if (player == null)
+            {
                 return null;
+            }
 
             player.UpdateFriends();
 

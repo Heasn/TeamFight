@@ -38,7 +38,9 @@ namespace TeamFight.Core.Cache
         public bool AddPlayer(Player player)
         {
             if (PlayersCache.ContainsKey(player.Id))
+            {
                 return false;
+            }
 
             PlayersCache.Add(player.Id, player);
             return true;

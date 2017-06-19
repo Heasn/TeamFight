@@ -11,9 +11,15 @@ using System;
 
 namespace TeamFight.Models
 {
+    /// <summary>
+    /// 确认战斗邀请结果数据模型
+    /// </summary>
     public class ConfirmFightInvitationModel
     {
+        //队伍Id
         public Guid TeamId { get; set; }
+
+        //确认结果
         public bool ConfirmResult { get; set; }
     }
 }

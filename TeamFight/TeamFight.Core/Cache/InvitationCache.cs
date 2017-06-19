@@ -54,7 +54,9 @@ namespace TeamFight.Core.Cache
         public bool AddInvitation(Player player, InvitationType type, GameTeam team)
         {
             if (IsInvitationExist(player, type))
+            {
                 return false;
+            }
 
             Invitations.Add(Tuple.Create(player, type, team));
             return true;
@@ -90,7 +92,9 @@ namespace TeamFight.Core.Cache
         public GameTeam FindTeam(Player player, InvitationType type)
         {
             if (!IsInvitationExist(player, type))
+            {
                 return null;
+            }
 
             var tuple = Invitations.Single(x => (x.Item1.Id == player.Id) && (x.Item2 == type));
 

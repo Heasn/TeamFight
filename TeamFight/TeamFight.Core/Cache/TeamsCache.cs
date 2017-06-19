@@ -40,7 +40,9 @@ namespace TeamFight.Core.Cache
         public bool AddTeam(GameTeam team)
         {
             if (IsExistTeam(team.Id))
+            {
                 return false;
+            }
 
             Teams.Add(team);
             return true;

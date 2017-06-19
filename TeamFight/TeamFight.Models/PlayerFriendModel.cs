@@ -6,8 +6,12 @@
 // Create Date:2017-06-19
 // Revision History:
 // ****************************************
+
 namespace TeamFight.Models
 {
+    /// <summary>
+    /// 玩家好友数据模型
+    /// </summary>
     public class PlayerFriendModel
     {
         /// <summary>

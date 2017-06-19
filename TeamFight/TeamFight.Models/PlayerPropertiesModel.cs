@@ -8,6 +8,9 @@
 // ****************************************
 namespace TeamFight.Models
 {
+    /// <summary>
+    /// 玩家属性数据模型
+    /// </summary>
     public class PlayerPropertiesModel
     {
         /// <summary>
