@@ -30,8 +30,14 @@ namespace TeamFight.Core.Cache
             Fight,
         }
 
+        /// <summary>
+        /// InvitationCache的唯一实例
+        /// </summary>
         private static readonly InvitationCache SingletonInstance = new InvitationCache();
 
+        /// <summary>
+        /// 邀请列表
+        /// </summary>
         private static readonly List<Tuple<Player, InvitationType, GameTeam>> Invitations =
             new List<Tuple<Player, InvitationType, GameTeam>>();
 
@@ -39,6 +45,9 @@ namespace TeamFight.Core.Cache
         {
         }
 
+        /// <summary>
+        /// 提供对InvitationCache的唯一实例访问
+        /// </summary>
         public static InvitationCache Instance
         {
             get { return SingletonInstance; }
@@ -59,6 +68,7 @@ namespace TeamFight.Core.Cache
             }
 
             Invitations.Add(Tuple.Create(player, type, team));
+
             return true;
         }
 

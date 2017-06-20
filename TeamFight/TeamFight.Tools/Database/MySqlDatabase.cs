@@ -16,7 +16,7 @@ namespace TeamFight.Tools.Database
     public sealed class MySqlDatabase : IDatabase
     {
 
-        private MySqlConnection _dbConnection;
+        private MySqlConnection mDbConnection;
 
         ///<summary>
         ///构造函数
@@ -38,8 +38,8 @@ namespace TeamFight.Tools.Database
         ///<param name="connString">连接字符串</param>
         public void Open(string connString)
         {
-            _dbConnection = new MySqlConnection(connString);
-            _dbConnection.Open();
+            mDbConnection = new MySqlConnection(connString);
+            mDbConnection.Open();
         }
 
         ///<summary>
@@ -47,7 +47,7 @@ namespace TeamFight.Tools.Database
         ///</summary>
         public void Close()
         {
-            _dbConnection.Close();
+            mDbConnection.Close();
         }
 
         ///<summary>
@@ -57,7 +57,7 @@ namespace TeamFight.Tools.Database
         {
             get
             {
-                return _dbConnection;
+                return mDbConnection;
             }
         }
 
@@ -77,7 +77,7 @@ namespace TeamFight.Tools.Database
         ///<returns>影响行数</returns>
         public int ExecuteNonQuery(string sql)
         {
-            var cmdDb = _dbConnection.CreateCommand();
+            var cmdDb = mDbConnection.CreateCommand();
             cmdDb.CommandText = sql;
             int n = cmdDb.ExecuteNonQuery();
             return n;
@@ -102,7 +102,7 @@ namespace TeamFight.Tools.Database
         ///<returns>第一行第一列值</returns>
         public object ExecuteScalar(string sql)
         {
-            var cmdDb = _dbConnection.CreateCommand();
+            var cmdDb = mDbConnection.CreateCommand();
             cmdDb.CommandText = sql;
             object obj = cmdDb.ExecuteScalar();
             return obj;
@@ -127,7 +127,7 @@ namespace TeamFight.Tools.Database
         ///<returns>DataReader对象</returns>
         public DbDataReader ExecuteReader(string sql)
         {
-            var cmdDb = _dbConnection.CreateCommand();
+            var cmdDb = mDbConnection.CreateCommand();
             cmdDb.CommandText = sql;
             return cmdDb.ExecuteReader(CommandBehavior.CloseConnection);
         }

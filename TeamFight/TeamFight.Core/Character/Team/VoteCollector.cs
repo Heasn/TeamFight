@@ -17,7 +17,14 @@ namespace TeamFight.Core.Character.Team
     /// </summary>
     public class VoteCollector
     {
+        /// <summary>
+        /// 投票容量
+        /// </summary>
         private uint mVoteSize;
+
+        /// <summary>
+        /// 投票回收器
+        /// </summary>
         private static List<bool> _collector;
 
         /// <summary>

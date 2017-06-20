@@ -28,7 +28,7 @@ namespace TeamFight.Host.Controllers
         /// <returns>玩家相关数据</returns>
         public PlayerPropertiesModel Login([FromBody]int playerId)
         {
-
+            //查找玩家是否在线
             if (OnlinePlayersCache.Instance.IsPlayerOnline(playerId))
             {
                 return null;

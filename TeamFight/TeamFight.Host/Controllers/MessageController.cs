@@ -28,6 +28,7 @@ namespace TeamFight.Host.Controllers
             
             var player = OnlinePlayersCache.Instance.FindPlayer(playerId);
 
+            //查找是否有组队邀请
             if (InvitationCache.Instance.IsInvitationExist(player, InvitationCache.InvitationType.Team))
             {
                 return Json(new
@@ -37,6 +38,7 @@ namespace TeamFight.Host.Controllers
                 });
             }
 
+            //查找是否有战斗邀请
             if (InvitationCache.Instance.IsInvitationExist(player, InvitationCache.InvitationType.Fight))
             {
                 return Json(new

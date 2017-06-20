@@ -18,13 +18,23 @@ namespace TeamFight.Core.Cache
     /// </summary>
     public class OnlinePlayersCache
     {
+        /// <summary>
+        /// OnlinePlayersCache的唯一实例
+        /// </summary>
         private static readonly OnlinePlayersCache SingletonInstance = new OnlinePlayersCache();
+
+        /// <summary>
+        /// 玩家列表
+        /// </summary>
         private static readonly Dictionary<int, Player> PlayersCache = new Dictionary<int, Player>();
 
         private OnlinePlayersCache()
         {
         }
 
+        /// <summary>
+        /// 提供对OnlinePlayersCache的唯一实例访问
+        /// </summary>
         public static OnlinePlayersCache Instance
         {
             get { return SingletonInstance; }
@@ -43,6 +53,7 @@ namespace TeamFight.Core.Cache
             }
 
             PlayersCache.Add(player.Id, player);
+
             return true;
         }
 
@@ -74,6 +85,7 @@ namespace TeamFight.Core.Cache
         public Player FindPlayer(int playerId)
         {
             Player player;
+
             return PlayersCache.TryGetValue(playerId, out player) ? player : null;
         }
     }

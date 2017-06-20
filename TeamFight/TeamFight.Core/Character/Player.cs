@@ -103,6 +103,7 @@ namespace TeamFight.Core.Character
                 GameTeam = new GameTeam(this);
                 return true;
             }
+
             return false;
         }
 
@@ -116,6 +117,7 @@ namespace TeamFight.Core.Character
             GameTeam = team;
             GameTeam.AddMember(this);
             InvitationCache.Instance.RemoveInvitation(this, InvitationCache.InvitationType.Team);
+
             return true;
         }
 
@@ -127,6 +129,7 @@ namespace TeamFight.Core.Character
         {
             GameTeam.RemoveMember(this);
             GameTeam = null;
+
             return true;
         }
 
@@ -141,9 +144,12 @@ namespace TeamFight.Core.Character
             var player = OnlinePlayersCache.Instance.FindPlayer(playerId);
 
             if (player == null)
+            {
                 return false;
+            }
 
             InvitationCache.Instance.AddInvitation(player, type, GameTeam);
+
             return true;
         }
 

@@ -97,13 +97,15 @@ namespace TeamFight.Core.Character.Team
         /// <returns></returns>
         public bool RemoveMember(Player member)
         {
-            //队长解散
+            //判断是否是队长解散
             if (Captain.Id == member.Id)
             {
                 foreach (var teamMember in Members.Where(x => !ReferenceEquals(x, member)))
                 {
                     teamMember.QuitTeam();
                 }
+
+                Members.Remove(member);
                 return true;
             }
 

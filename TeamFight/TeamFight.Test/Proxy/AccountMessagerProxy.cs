@@ -42,6 +42,7 @@ namespace TeamFight.Test.Proxy
                 });
 
                 var response = client.PostAsync(url, postData).Result;
+
                 return JsonConvert.DeserializeObject<PlayerPropertiesModel>(response.Content.ReadAsStringAsync().Result);
             }
         }
@@ -63,6 +64,7 @@ namespace TeamFight.Test.Proxy
                 });
 
                 var response = client.PostAsync(url, postData).Result;
+
                 return JsonConvert.DeserializeObject<PlayerFriendModel[]>(response.Content.ReadAsStringAsync().Result);
             }
         }

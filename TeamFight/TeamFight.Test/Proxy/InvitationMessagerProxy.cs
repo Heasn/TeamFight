@@ -41,6 +41,7 @@ namespace TeamFight.Test.Proxy
                 });
 
                 var response = client.PostAsync(url, postData).Result;
+
                 return JsonConvert.DeserializeObject<dynamic>(response.Content.ReadAsStringAsync().Result);
             }
         }

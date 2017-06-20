@@ -18,7 +18,7 @@ namespace TeamFight.Test
         {
             int playerId;
             Guid teamId = Guid.Empty;
-            Guid inviteTeamId = Guid.Empty;
+            //Guid inviteTeamId = Guid.Empty;
 
             Console.WriteLine("请输入一个角色Id，后续流程将会使用该Id的角色");
             Console.WriteLine(int.TryParse(Console.ReadLine(), out playerId) ? "记录成功，请输入后续指令" : "角色Id错误，请关闭程序重试");

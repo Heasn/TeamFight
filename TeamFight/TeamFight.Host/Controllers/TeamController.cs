@@ -23,7 +23,7 @@ namespace TeamFight.Host.Controllers
     public class TeamController : ApiController
     {
         /// <summary>
-        ///     玩家创建组队
+        /// 玩家创建组队
         /// </summary>
         /// <param name="playerId">玩家Id</param>
         /// <returns>创建的组队的Id</returns>
@@ -40,7 +40,7 @@ namespace TeamFight.Host.Controllers
         }
 
         /// <summary>
-        ///     获取推荐组队列表
+        /// 获取推荐组队列表
         /// </summary>
         /// <returns>成功返回组队列表，失败返回null</returns>
         [HttpPost]
@@ -63,7 +63,7 @@ namespace TeamFight.Host.Controllers
         }
 
         /// <summary>
-        ///     邀请玩家
+        /// 邀请玩家
         /// </summary>
         /// <param name="model">接收到的邀请玩家的数据模型，包含发起人Id（CharacterId）与被邀请人Id（InvitedCharacterId）</param>
         /// <returns>邀请成功返回true，邀请失败返回false</returns>
@@ -76,11 +76,12 @@ namespace TeamFight.Host.Controllers
                 return false;
             }
 
+            //返回true条件：玩家是队长并且发出组队邀请成功
             return ReferenceEquals(player, player.GameTeam.Captain) && player.AddInvitation(model.InvitedPlayerId, InvitationCache.InvitationType.Team);
         }
 
         /// <summary>
-        ///     加入队伍
+        /// 加入队伍
         /// </summary>
         /// <param name="model">加入组队的数据模型</param>
         /// <returns>是否加入成功</returns>
@@ -104,7 +105,7 @@ namespace TeamFight.Host.Controllers
         }
 
         /// <summary>
-        ///     玩家退出组队
+        /// 玩家退出组队
         /// </summary>
         /// <param name="charId">玩家Id</param>
         /// <returns>退出是否成功，true表示成功，false表示失败或队伍不存在</returns>
@@ -121,7 +122,7 @@ namespace TeamFight.Host.Controllers
         }
 
         /// <summary>
-        ///     由队长发起，发起战斗请求
+        /// 由队长发起，发起战斗请求
         /// </summary>
         /// <param name="charId">人物Id</param>
         /// <returns>发出战斗请求是否成功</returns>
@@ -146,7 +147,7 @@ namespace TeamFight.Host.Controllers
         }
 
         /// <summary>
-        ///     由队员发起，队员确认是否接收战斗请求
+        /// 由队员发起，队员确认是否接收战斗请求
         /// </summary>
         /// <param name="model">确认战斗请求结果数据模型</param>
         /// <returns>确认结果是否成功</returns>
@@ -162,7 +163,7 @@ namespace TeamFight.Host.Controllers
         }
 
         /// <summary>
-        ///     获取队伍所有成员的投票结果
+        /// 获取队伍所有成员的投票结果
         /// </summary>
         /// <param name="teamId">队伍Id</param>
         /// <returns>确认结果</returns>

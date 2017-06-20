@@ -20,13 +20,23 @@ namespace TeamFight.Core.Cache
     /// </summary>
     public class TeamsCache
     {
+        /// <summary>
+        /// TeamsCache的唯一实例
+        /// </summary>
         private static readonly TeamsCache SingletonInstance = new TeamsCache();
+
+        /// <summary>
+        /// 队伍列表
+        /// </summary>
         private static readonly List<GameTeam> Teams = new List<GameTeam>();
 
         private TeamsCache()
         {
         }
 
+        /// <summary>
+        /// 提供对TeamsCache的唯一实例访问
+        /// </summary>
         public static TeamsCache Instance
         {
             get { return SingletonInstance; }
@@ -45,6 +55,7 @@ namespace TeamFight.Core.Cache
             }
 
             Teams.Add(team);
+
             return true;
         }
 
@@ -85,6 +96,7 @@ namespace TeamFight.Core.Cache
         /// <returns></returns>
         public List<GameTeam> GetRecommendTeams(int length)
         {
+            //随机排序取前length个队伍
             return Teams.AsParallel().Where(x => x.Members == null).OrderBy(x => Guid.NewGuid()).Take(length).ToList();
         }
     }

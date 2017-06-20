@@ -19,7 +19,6 @@ namespace TeamFight.Host
             string baseAddress = "http://localhost:9000/";
             WebApp.Start<Startup>(baseAddress);
             Console.WriteLine("WebApp服务器启动成功 URL:" + baseAddress);
-
             Console.ReadLine();
         }
     }

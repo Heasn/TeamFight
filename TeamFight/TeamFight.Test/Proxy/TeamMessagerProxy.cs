@@ -44,6 +44,7 @@ namespace TeamFight.Test.Proxy
                 });
 
                 var response = client.PostAsync(url, postData).Result;
+
                 return JsonConvert.DeserializeObject<Guid>(response.Content.ReadAsStringAsync().Result);
             }
         }
@@ -59,6 +60,7 @@ namespace TeamFight.Test.Proxy
             using (var client = new HttpClient())
             {
                 var response = client.PostAsync(url, null).Result;
+
                 return JsonConvert.DeserializeObject<List<RecommendTeamModel>>(response.Content.ReadAsStringAsync().Result);
             }
         }
@@ -82,6 +84,7 @@ namespace TeamFight.Test.Proxy
                 });
 
                 var response = client.PostAsync(url, postData).Result;
+
                 return JsonConvert.DeserializeObject<bool>(response.Content.ReadAsStringAsync().Result);
             }
         }
@@ -105,6 +108,7 @@ namespace TeamFight.Test.Proxy
                 });
 
                 var response = client.PostAsync(url, postData).Result;
+
                 return JsonConvert.DeserializeObject<bool>(response.Content.ReadAsStringAsync().Result);
             }
         }
@@ -126,6 +130,7 @@ namespace TeamFight.Test.Proxy
                 });
 
                 var response = client.PostAsync(url, postData).Result;
+
                 return JsonConvert.DeserializeObject<bool>(response.Content.ReadAsStringAsync().Result);
             }
         }
@@ -147,6 +152,7 @@ namespace TeamFight.Test.Proxy
                 });
 
                 var response = client.PostAsync(url, postData).Result;
+
                 return JsonConvert.DeserializeObject<bool>(response.Content.ReadAsStringAsync().Result);
             }
         }
@@ -170,6 +176,7 @@ namespace TeamFight.Test.Proxy
                 });
 
                 var response = client.PostAsync(url, postData).Result;
+
                 return JsonConvert.DeserializeObject<bool>(response.Content.ReadAsStringAsync().Result);
             }
         }
@@ -191,6 +198,7 @@ namespace TeamFight.Test.Proxy
                 });
 
                 var response = client.PostAsync(url, postData).Result;
+
                 return JsonConvert.DeserializeObject<bool?>(response.Content.ReadAsStringAsync().Result);
             }
         }
